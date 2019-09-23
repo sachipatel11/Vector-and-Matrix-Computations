@@ -140,21 +140,13 @@ public class Vector {
 	public void set(int index, double val) throws LinAlgException {
 		// TODO
 	}
-	
-	/** Change the dimension of this Vector by *reallocating array storage* and copying content over
-	 *  ... if new dim is larger than current dim then the additional indices take value 0.0
-	 *  ... if new dim is smaller than current dim then any indices in current vector beyond current
-	 *      dim are simply lost
-	 * 
-	 * @param new_dim
-	 * @throws LinAlgException if vector dimension is < 1
-	 */
-	public void changeDim(int new_dim) {
-		// TODO
-	}
-	
+
 	/** This adds a scalar d to all elements of *this* Vector
-	 *  (should modify *this*)
+	 *  ... (should modify *this*). The following is merely a representation of 
+	 *  ... how this method should behave. 
+	 *	a => [[1,2,3],[4,5,6]]
+	 *  a.scalarAddInPlace(1)
+	 * 	a => [[2,3,4],[5,6,7]] 
 	 * 
 	 * @param d
 	 */
@@ -163,7 +155,9 @@ public class Vector {
 			_adVal[index] += d;
 	}
 	
-	/** This creates a new Vector, adds a scalar d to it, and returns it
+	/** This creates a new Vector with the same dimention of *this*, 
+	 *  ... and copy all element of *this* to new vector object. Add scalar to every element in new vector
+	 *  ... and returns it
 	 *  (should not modify *this*)
 	 * 
 	 * @param d
@@ -214,7 +208,7 @@ public class Vector {
 		return null;
 	}
 	
-	/** Performs an elementwise multiplication of v and *this*, modifies *this*
+	/** Performs an elementwise multiplication of *this* and v, modifies *this*
 	 * 
 	 * @param v
 	 * @throws LinAlgException if dimensions of the two operand vectors do not match

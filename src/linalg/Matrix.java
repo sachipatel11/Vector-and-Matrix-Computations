@@ -15,7 +15,7 @@ public class Matrix {
 	// TODO: add your own data member to represent the matrix content
 	//       you could use a 2D array, or an array of Vectors (e.g., for each row)
 	
-	/** Allocates a new matrix of the given row and column dimensions
+	/** Create a new matrix of the given row and column dimensions
 	 * 
 	 * @param rows
 	 * @param cols
