@@ -10,8 +10,8 @@ package linalg;
  */
 public class Matrix {
 
-	private int _nRows; // Number of rows in this matrix; nomenclature: _ for data member, n for integer
-	private int _nCols; // Number of columns in this matrix; nomenclature: _ for data member, n for integer
+	public int _nRows; // Number of rows in this matrix; nomenclature: _ for data member, n for integer
+	public int _nCols; // Number of columns in this matrix; nomenclature: _ for data member, n for integer
 	// TODO: add your own data member to represent the matrix content
 	//       you could use a 2D array, or an array of Vectors (e.g., for each row)
 	

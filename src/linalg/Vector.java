@@ -10,8 +10,8 @@ package linalg;
  */
 public class Vector {
 
-	private int _nDim;       // Dimension of the Vector; nomenclature: _ for data member, n for integer
-	private double[] _adVal; // Contents of the Vector; nomenclature: _ for data member, a for array, d for double
+	public int _nDim;       // Dimension of the Vector; nomenclature: _ for data member, n for integer
+	public double[] _adVal; // Contents of the Vector; nomenclature: _ for data member, a for array, d for double
 
 	/** Constructor: allocates space for a new vector of dimension dim
 	 * 
