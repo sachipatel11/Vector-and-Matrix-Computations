@@ -38,7 +38,7 @@ public class Matrix {
 	 * 
 	 */
 	public String toString() {
-		// TODO: hint: see Vector.toString() for an example
+		// Optional: hint: see Vector.toString() for an example
 		return null;
 	}
 
@@ -48,10 +48,10 @@ public class Matrix {
 	 * @param o the object to compare to
 	 */
 	public boolean equals(Object o) {
-		// TODO: hint: see Vector.equals(), you can also use Vector.equals() for checking equality 
+		// Optional: hint: see Vector.equals(), you can also use Vector.equals() for checking equality 
 		//             of row vectors if you store your matrix as an array of Vectors for rows
 		
-		// TODO: this should not always return false!
+		// Optional: this should not always return false!
 		return false; // This should not always return false!
 	}
 	
