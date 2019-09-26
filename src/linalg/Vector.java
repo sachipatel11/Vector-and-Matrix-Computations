@@ -66,6 +66,50 @@ public class Vector {
 			}
 		}
 	}
+
+	/** Overrides method toString() on Object: converts the class to a human readable String
+	 * 
+	 *  Note 1: this is invoked *automatically* when the object is listed where a String is expected,
+	 *          e.g., "System.out.println(v);" is actually equivalent to "System.out.println(v.toString());"       
+	 *          
+	 *  Note 2: for debugging purposes, you should always define a toString() method on a class you define
+	 */
+	@Override // optional annotation to tell Java we expect this overrides a parent method -- compiler will warn if not
+	public String toString() {
+		// We could just repeatedly append to an existing String, but that copies the String each
+		// time, whereas a StringBuilder simply appends new characters to the end of the String
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		for (int i = 0; i < _nDim; i++)
+			sb.append(String.format(" %6.3f ", _adVal[i])); // Append each vector value in order
+		sb.append(" ]");
+		return sb.toString();
+	}
+
+	/** Overrides address equality check on Object: allows semantic equality testing of vectors,
+	 *  i.e., here we say two objects are equal iff they have the same dimensions and values
+	 *        match at all indices
+	 * 
+	 * Note: you should almost always define equals() since the default equals() on Object simply
+	 *       tests that two objects occupy the same space in memory (are actually the same instance), 
+	 *       but does not test that two objects may be different instances but have the same content
+	 *       
+	 * @param o the object to compare to
+	 */
+	@Override // optional annotation to tell Java we expect this overrides a parent method -- compiler will warn if not
+	public boolean equals(Object o) {
+		if (o instanceof Vector) {
+			Vector v = (Vector)o; // This is called a cast (or downcast)... we can do it since we
+			                      // know from the if statement that o is actually of subtype Vector
+			if (_nDim != v._nDim)
+				return false; // Two Vectors cannot be equal if they don't have the same dimension
+			for (int index = 0; index < _nDim; index++)
+				if (_adVal[index] != v._adVal[index])
+					return false; // If two Vectors mismatch at any index, they are not equal
+			return true; // Everything matched... objects are equal!
+		} else // if we get here "(o instanceof Vector)" was false
+			return false; // Two objects cannot be equal if they don't have the same class type
+	}
 	
 	/** Get the dimension of this vector
 	 * 

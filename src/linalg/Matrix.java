@@ -34,6 +34,27 @@ public class Matrix {
 		// TODO: hint: see the corresponding Vector "copy constructor" for an example
 	}
 
+	/** Constructs a String representation of this Matrix
+	 * 
+	 */
+	public String toString() {
+		// TODO: hint: see Vector.toString() for an example
+		return null;
+	}
+
+	/** Tests whether another Object o (most often a matrix) is a equal to *this*
+	 *  (i.e., are the dimensions the same and all elements equal each other?)
+	 * 
+	 * @param o the object to compare to
+	 */
+	public boolean equals(Object o) {
+		// TODO: hint: see Vector.equals(), you can also use Vector.equals() for checking equality 
+		//             of row vectors if you store your matrix as an array of Vectors for rows
+		
+		// TODO: this should not always return false!
+		return false; // This should not always return false!
+	}
+	
 	/** Return the number of rows in this matrix
 	 *   
 	 * @return 
