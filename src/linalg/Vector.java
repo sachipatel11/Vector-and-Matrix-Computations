@@ -5,14 +5,17 @@ package linalg;
  *   
  *   Class and method comments are in JavaDoc: https://en.wikipedia.org/wiki/Javadoc
  * 
- * @author scott.sanner@utoronto.ca, <YOUR_EMAIL>
+ * @author scott.sanner@utoronto.ca, <YOUR_EMAIL> sachi.patel@mail.utoronto.ca
  *
  */
+
+//v1.v2 - THIS is V1 ** general comment 
+
 public class Vector {
 
 	public int _nDim;       // Dimension of the Vector; nomenclature: _ for data member, n for integer
 	public double[] _adVal; // Contents of the Vector; nomenclature: _ for data member, a for array, d for double
-
+        //Vector v1= new Vector();
 	/** Constructor: allocates space for a new vector of dimension dim
 	 * 
 	 * @param dim
@@ -79,7 +82,7 @@ public class Vector {
 		// We could just repeatedly append to an existing String, but that copies the String each
 		// time, whereas a StringBuilder simply appends new characters to the end of the String
 		StringBuilder sb = new StringBuilder();
-		sb.append("[");
+                sb.append("[");
 		for (int i = 0; i < _nDim; i++)
 			sb.append(String.format(" %6.3f ", _adVal[i])); // Append each vector value in order
 		sb.append(" ]");
@@ -115,20 +118,30 @@ public class Vector {
 	 * 
 	 * @return: the dimensionality of this Vector
 	 */
+        
+        //returning the dimension of the vector 
 	public int getDim() {
 		// TODO (this should not return -1!)
-		return -1;
+                return _nDim;
 	}
 
 	/** Returns the value of this vector at the given index (remember: array indices start at 0)
 	 * 
 	 * @param index
-	 * @return
+	 * @return value 
 	 * @throws LinAlgException if array index is out of bounds (see throw examples above)
 	 */
+        //if array index in bounds, use given index and return the value of the vector 
+        //at that index 
 	public double get(int index) throws LinAlgException {
 		// TODO (this should not return -1.0!)
-		return -1.0;
+                if (index >= _adVal.length) {
+                    throw new LinAlgException ("array index out of bounds");
+                } 
+                else {
+                    return _adVal[index];
+                }
+		
 	}
 
 	/** Set the value val of the vector at the given index (remember: array indices start at 0)
@@ -137,8 +150,17 @@ public class Vector {
 	 * @param val
 	 * @throws LinAlgException if array index is out of bounds (see throw examples above)
 	 */
+        //if array inbounds, set the vector value at the given index to the given value
 	public void set(int index, double val) throws LinAlgException {
 		// TODO
+            if (index >= _adVal.length) {
+                throw new LinAlgException ("array index out of bounds");
+            }
+            else{
+                _adVal[index]=val;
+            }
+                        
+            
 	}
 
 	/** This adds a scalar d to all elements of *this* Vector
@@ -150,6 +172,8 @@ public class Vector {
 	 * 
 	 * @param d
 	 */
+        //loop through the vector and add each element by a given scalar
+        //returns nothing
 	public void scalarAddInPlace(double d) {
 		for (int index = 0; index < _nDim; index++)
 			_adVal[index] += d;
@@ -161,11 +185,16 @@ public class Vector {
 	 *  (should not modify *this*)
 	 * 
 	 * @param d
-	 * @return new Vector after scalar addition
+	 * @return myvec - new Vector after scalar addition
 	 */
+        //create a new vector called myvec with elements from this
+        //add a scalar to the new vector without modifying "this" 
+        //by using the previous method
 	public Vector scalarAdd(double d) {
 		// TODO (this should not return null!)
-		return null;
+            Vector myvec = new Vector(this);
+                myvec.scalarAddInPlace(d);
+		return myvec;
 	}
 	
 	/** This multiplies a scalar d by all elements of *this* Vector
@@ -173,70 +202,128 @@ public class Vector {
 	 * 
 	 * @param d
 	 */
+        //loop through the vector
+        //modify the "this" vector by multiplying the vector with a scalar
 	public void scalarMultInPlace(double d) {
 		// TODO
+            for (int index = 0; index < _nDim; index++)
+                _adVal[index] *= d;
 	}
 	
 	/** This creates a new Vector, multiplies it by a scalar d, and returns it
 	 *  (should not modify *this*)
 	 * 
 	 * @param d
-	 * @return new Vector after scalar addition
+	 * @return myVec
 	 */
+        //create a new vector with elements from this
+        //multiply the given scalar with that vector without modifying "this" 
+        //by using previous method
 	public Vector scalarMult(double d) {
 		// TODO (this should not return null!)
-		return null;
+                Vector myVec = new Vector(this);
+                myVec.scalarMultInPlace(d);
+		return myVec;
 	}
+        
 
 	/** Performs an elementwise addition of v to *this*, modifies *this*
 	 * 
 	 * @param v
 	 * @throws LinAlgException if dimensions of the two operand vectors do not match
 	 */
+        //changes "this" by adding a vector to it as long as the dimensions match
 	public void elementwiseAddInPlace(Vector v) throws LinAlgException {
 		// TODO
+                
+             if (v._nDim != this._nDim){
+                 throw new LinAlgException("dimensions don't match");
+        } else{
+                 for (int i=0; i<v._nDim; i++){
+                    _adVal[i]= _adVal[i] + v._adVal[i] ;
+                 } 
+             }
 	}
 
 	/** Performs an elementwise addition of *this* and v and returns a new Vector with result
 	 * 
 	 * @param v
-	 * @return
+	 * @return myVec - new vector
 	 * @throws LinAlgException if dimensions of the two operand vectors do not match
 	 */
+        
+        //doesn't change this but instead creates a new vector 
+        //which contains the added values of (this + given vector)
+        //as long as the dimensions match
 	public Vector elementwiseAdd(Vector v) throws LinAlgException {
 		// TODO (this should not return null!)
-		return null;
+                Vector myVec= new Vector(this);
+                if (v._nDim != this._nDim){
+                throw new LinAlgException("dimensions do not match");
+            } else{
+                
+                myVec.elementwiseAddInPlace(v);
+		return myVec; 
+                }    
 	}
-	
+	//"this" is an instance
 	/** Performs an elementwise multiplication of *this* and v, modifies *this*
 	 * 
 	 * @param v
 	 * @throws LinAlgException if dimensions of the two operand vectors do not match
 	 */
+        //if dimensions match, using a loop multiply "this" by a vector 
 	public void elementwiseMultInPlace(Vector v) throws LinAlgException {
 		// TODO
+            if (v._nDim != this._nDim){
+                throw new LinAlgException("dimensions do not match");
+            } else{
+                for (int i=0; i<v._nDim; i++){
+                    _adVal[i]= _adVal[i]*v._adVal[i];
+                }
+            }
+               
+             
+                
 	}
 
 	/** Performs an elementwise multiplication of *this* and v and returns a new Vector with result
 	 * 
 	 * @param v
-	 * @return
+	 * @return myVec - new vector 
 	 * @throws LinAlgException if dimensions of the two operand vectors do not match
 	 */
+        //if dimensions match, multiply new vector by given vector and return that 
+        //done by using previous method and without modifying this
 	public Vector elementwiseMult(Vector v) throws LinAlgException {
 		// TODO (this should not return null!)
-		return null;
+                Vector myVec= new Vector(this);
+                if (v._nDim != this._nDim){
+                    throw new LinAlgException("dimensions do not match");
+            } else{
+                myVec.elementwiseMultInPlace(v);
+		return myVec;
+                }
 	}
 
 	/** Performs an inner product of Vectors v1 and v2 and returns the scalar result
 	 * 
 	 * @param v1
 	 * @param v2
-	 * @return
+	 * @return product of the 2 vectors
 	 * @throws LinAlgException
 	 */
+        //if v1 and v2 dim are same
+        //using a loop, multiply two vectors and return a scalar(product) 
 	public static double InnerProd(Vector v1, Vector v2) throws LinAlgException {
 		// TODO (this should not return -1.0!)
-		return -1.0;
+                double product =0;
+                if (v1._nDim != v2._nDim){
+                    throw new LinAlgException ("Cannot innerProd vectors of different dimensions");
+                }
+                for (int i=0;i<v1._nDim; i++){
+                    product = product + (v1._adVal[i]*v2._adVal[i]);
+                }
+		return product;
 	}
 }

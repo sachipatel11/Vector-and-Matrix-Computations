@@ -12,6 +12,7 @@ import soln.linalg.Vector;
  * @author ssanner@mie.utoronto.ca
  *
  */
+//when you make a new object
 public class TestLinAlgSoln {
 
 	public static void main(String[] args) {
