@@ -1,6 +1,6 @@
 
 package linalg;
-import java.util.*;
+
 
 /*** A class that represents a two dimensional real-valued (double) matrix
  *   and supports various matrix computations required in linear algebra.
